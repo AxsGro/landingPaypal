@@ -2,61 +2,61 @@
     {
         "nombre": "Jersey Chivas versión jugador local 23-24 para hombre",
         "imagen": "images/1.jpeg",
-        "precio": "$1349.50",
+        "precio": "1349.50",
         "descripcion": "Playera del club deportivo Guadalajara, versión de local."
     },
     {
         "nombre": "Jersey Manchester City 23-24 réplica local para hombre",
         "imagen": "images/2.jpeg",
-        "precio": "$849.50",
+        "precio": "849.50",
         "descripcion": "Playera del club Manchester City, versión de local."
     },
     {
         "nombre": "Camiseta visitante del Borussia Dortmund 23/24 para hombre",
         "imagen": "images/3.jpeg",
-        "precio": "$1189.30",
+        "precio": "1189.30",
         "descripcion": "Playera de visitante del club Borussia Dortmund, versión de visitante."
     },
     {
         "nombre": "Jersey local selección nacional de México 24 manga larga",
         "imagen": "images/4.jpeg",
-        "precio": "$1,999",
+        "precio": "1,999",
         "descripcion": "Jersey de la selección nacional de México, versión de local, manda larga."
     },
     {
         "nombre": "Paris Saint-Germain fútbol Nike Dri-FIT ADV para hombre 2024/25 versión de local",
         "imagen": "images/5.jpeg",
-        "precio": "$2,699",
+        "precio": "2,699",
         "descripcion": "Playera del club PSG, versión de local, azul y rojo."
     },
     {
         "nombre": "Liverpool FC local fútbol Nike Dri-FIT Replica para hombre 2024/25 Stadium",
         "imagen": "images/6.jpeg",
-        "precio": "$1,899",
+        "precio": "1,899",
         "descripcion": "Playera del Liverpool FC, color rojo, versión de local"
     },
     {
         "nombre": "Brasil local Nike Dri-FIT Replica 2024 Stadium para hombre",
         "imagen": "images/7.jpeg",
-        "precio": "$1,899",
+        "precio": "1,899",
         "descripcion": "Jersey versión local de la selección nacional de Brasil para hombre."
     },
     {
         "nombre": "Jersey Monterrey para Hombre Home Promo 23-24",
         "imagen": "images/8.jpeg",
-        "precio": "$1349.50",
+        "precio": "1349.50",
         "descripcion": "Playera del club deportivo Monterrey, versión de local, en colores azul y blanco."
     },
     {
         "nombre": "Jersey de local AC Milan 23/24 para adolescentes",
         "imagen": "images/9.jpeg",
-        "precio": "$1049.30",
+        "precio": "1049.30",
         "descripcion": "Playera del AC Milan versión local para adolescentes, marca Puma."
     },
     {
         "nombre": "USMNT 2024 Nike Dri-FIT Replica para hombre local Stadium",
         "imagen": "images/10.jpeg",
-        "precio": "$1,899",
+        "precio": "1,899",
         "descripcion": "Playera de local de la selección nacional de los Estados Unidos, para hombre."
     }
 ]
