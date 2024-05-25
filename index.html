@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de playeras deportivas</title>
 
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -74,6 +73,21 @@
     <div class="container">
         <div class="row" id="products-container">
             <!-- Aquí se insertarán las cards de los productos -->
+        </div>
+    </div>
+
+    <!-- Modal de PayPal -->
+    <div class="modal fade" id="paypalModal" tabindex="-1" aria-labelledby="paypalModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paypalModalLabel">Complete su compra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="paypal-button-container"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -167,7 +181,7 @@
                                     <p class="card-text">${product.descripcion}</p>
                                     <p class="price">$${product.precio}</p>
                                     <div class="mt-auto">
-                                        <button class="btn btn-primary mb-2 buyButton">Comprar</button>
+                                        <button class="btn btn-primary mb-2 buyButton" data-price="${product.precio}" data-name="${product.nombre}">Comprar</button>
                                         <button class="btn btn-success mb-2">Agregar al carrito</button>
                                         <button class="btn btn-secondary">Agregar a favoritos</button>
                                     </div>
@@ -176,9 +190,47 @@
                         `;
                         container.appendChild(card);
                     });
+
+                    // Inicializar botones de PayPal
+                    initPayPalButtons();
                 })
                 .catch(error => console.error('Error al cargar el archivo JSON:', error));
         });
+
+        function initPayPalButtons() {
+            document.querySelectorAll('.buyButton').forEach(button => {
+                button.addEventListener('click', function () {
+                    const price = this.getAttribute('data-price');
+                    const name = this.getAttribute('data-name');
+
+                    // Mostrar el modal de PayPal
+                    const paypalModal = new bootstrap.Modal(document.getElementById('paypalModal'));
+                    paypalModal.show();
+
+                    // Limpiar el contenedor del botón de PayPal antes de renderizar
+                    document.getElementById('paypal-button-container').innerHTML = '';
+
+                    // Renderizar botón de PayPal en el modal
+                    paypal.Buttons({
+                        createOrder: function (data, actions) {
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: price
+                                    },
+                                    description: name
+                                }]
+                            });
+                        },
+                        onApprove: function (data, actions) {
+                            return actions.order.capture().then(function (details) {
+                                alert('Compra completada por ' + details.payer.name.given_name);
+                            });
+                        }
+                    }).render('#paypal-button-container');
+                });
+            });
+        }
     </script>
 </body>
 

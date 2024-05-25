@@ -20,25 +20,25 @@
     {
         "nombre": "Jersey local selección nacional de México 24 manga larga",
         "imagen": "images/4.jpeg",
-        "precio": "1,999",
+        "precio": "1999",
         "descripcion": "Jersey de la selección nacional de México, versión de local, manda larga."
     },
     {
         "nombre": "Paris Saint-Germain fútbol Nike Dri-FIT ADV para hombre 2024/25 versión de local",
         "imagen": "images/5.jpeg",
-        "precio": "2,699",
+        "precio": "2699",
         "descripcion": "Playera del club PSG, versión de local, azul y rojo."
     },
     {
         "nombre": "Liverpool FC local fútbol Nike Dri-FIT Replica para hombre 2024/25 Stadium",
         "imagen": "images/6.jpeg",
-        "precio": "1,899",
+        "precio": "1899",
         "descripcion": "Playera del Liverpool FC, color rojo, versión de local"
     },
     {
         "nombre": "Brasil local Nike Dri-FIT Replica 2024 Stadium para hombre",
         "imagen": "images/7.jpeg",
-        "precio": "1,899",
+        "precio": "1899",
         "descripcion": "Jersey versión local de la selección nacional de Brasil para hombre."
     },
     {
@@ -56,7 +56,7 @@
     {
         "nombre": "USMNT 2024 Nike Dri-FIT Replica para hombre local Stadium",
         "imagen": "images/10.jpeg",
-        "precio": "1,899",
+        "precio": "1899",
         "descripcion": "Playera de local de la selección nacional de los Estados Unidos, para hombre."
     }
 ]
