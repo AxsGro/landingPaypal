@@ -15,7 +15,9 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles/index.css">
-    <script src="https://www.paypal.com/sdk/js?client-id=AW-K2VylAeFt2kfiI3_Z9OB8jubnDcP2UYxGaZa3HpILUsESiDUsEPWxyQOSCLCTgFIfsXOLukIJ4oI4&currency=MXN"></script>
+    <script 
+        src="https://www.paypal.com/sdk/js?client-id=AW-K2VylAeFt2kfiI3_Z9OB8jubnDcP2UYxGaZa3HpILUsESiDUsEPWxyQOSCLCTgFIfsXOLukIJ4oI4&currency=MXN">
+    </script>
 </head>
 
 <body>
@@ -182,7 +184,7 @@
                                     <p class="price">$${product.precio}</p>
                                     <div class="mt-auto">
                                         <button class="btn btn-primary mb-2 buyButton" data-price="${product.precio}" data-name="${product.nombre}">Comprar</button>
-                                        <button class="btn btn-success mb-2">Agregar al carrito</button>
+                                        <button class="btn btn-success mb-2 addToCartButton" data-product='${JSON.stringify(product)}'>Agregar al carrito</button>
                                         <button class="btn btn-secondary">Agregar a favoritos</button>
                                     </div>
                                 </div>
@@ -193,6 +195,10 @@
 
                     // Inicializar botones de PayPal
                     initPayPalButtons();
+                    // Asignar evento clic a los botones "Agregar al carrito"
+                    document.querySelectorAll('.addToCartButton').forEach(button => {
+                        button.addEventListener('click', addToCart);
+                    });
                 })
                 .catch(error => console.error('Error al cargar el archivo JSON:', error));
         });
@@ -231,6 +237,28 @@
                 });
             });
         }
+        // Dentro de la función addToCart en index.html
+        function addToCart() {
+            // Obtener el producto desde el atributo data del botón que se hizo clic
+            const product = JSON.parse(this.getAttribute('data-product'));
+
+            // Obtener el carrito del almacenamiento de sesión o crear uno vacío si no existe
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+            // Agregar el producto al carrito
+            cart.push(product);
+
+            // Guardar el carrito actualizado en el almacenamiento de sesión
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+
+            // Mostrar un mensaje de confirmación
+            alert('Producto añadido al carrito');
+
+            // Redirigir a la página del carrito
+            window.location.href = 'carrito.html';
+        }
+
+
     </script>
 </body>
 
