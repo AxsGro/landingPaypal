@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KG4D7NMEXH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-KG4D7NMEXH');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/iconMX.png">
@@ -46,7 +54,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Perfil</a>
+                            <a class="nav-link active" aria-current="page" href="index.html">Perfil</a>
                         </li>
                         <li class="nav-item" hidden>
                             <a class="nav-link" href="#">Link</a>
@@ -58,8 +66,8 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="carrito.html">Carrito</a></li>
-                                <li><a class="dropdown-item" href="favoritos.html">Favoritos</a></li>
-                                <li><a class="dropdown-item" href="historial.html">Historial de compras</a></li>
+                                <li><a class="dropdown-item" href="index.html">Favoritos</a></li>
+                                <li><a class="dropdown-item" href="index.html">Historial de compras</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -103,13 +111,13 @@
                 </div>
                 <div class="col-md-4 text-center">
                     <h5>Síguenos en redes sociales</h5>
-                    <p><a href="https://www.facebook.com/tiendadeplayeras" class="text-white">Facebook</a></p>
+                    <p><a href="https://www.facebook.com/profile.php?id=61558385277108" class="text-white">Facebook</a></p>
                 </div>
                 <div class="col-md-4 text-end">
                     <h5>Términos y condiciones</h5>
-                    <p><a href="#" class="text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Términos de
+                    <p><a href="index.html" class="text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Términos de
                             servicio</a></p>
-                    <p><a href="#" class="text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Política de
+                    <p><a href="index.html" class="text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Política de
                             privacidad</a></p>
                 </div>
             </div>
@@ -176,7 +184,7 @@
                         const card = document.createElement('div');
                         card.className = 'col-md-4 mb-4 d-flex align-items-stretch';
                         card.innerHTML = `
-                            <div class="card">
+                            <div class="card product-card" data-product='${JSON.stringify(product)}'>
                                 <img src="${product.imagen}" class="card-img-top" alt="${product.nombre}">
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">${product.nombre}</h5>
@@ -199,13 +207,22 @@
                     document.querySelectorAll('.addToCartButton').forEach(button => {
                         button.addEventListener('click', addToCart);
                     });
+                    // Asignar evento clic a las tarjetas de producto
+                    document.querySelectorAll('.product-card').forEach(card => {
+                        card.addEventListener('click', function () {
+                            const product = JSON.parse(this.getAttribute('data-product'));
+                            sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+                            window.location.href = 'producto.html';
+                        });
+                    });
                 })
                 .catch(error => console.error('Error al cargar el archivo JSON:', error));
         });
 
         function initPayPalButtons() {
             document.querySelectorAll('.buyButton').forEach(button => {
-                button.addEventListener('click', function () {
+                button.addEventListener('click', function (event) {
+                    event.stopPropagation();
                     const price = this.getAttribute('data-price');
                     const name = this.getAttribute('data-name');
 
@@ -237,8 +254,9 @@
                 });
             });
         }
-        // Dentro de la función addToCart en index.html
-        function addToCart() {
+
+        function addToCart(event) {
+            event.stopPropagation();
             // Obtener el producto desde el atributo data del botón que se hizo clic
             const product = JSON.parse(this.getAttribute('data-product'));
 
@@ -257,8 +275,6 @@
             // Redirigir a la página del carrito
             window.location.href = 'carrito.html';
         }
-
-
     </script>
 </body>
 
